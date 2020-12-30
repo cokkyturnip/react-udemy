@@ -1,0 +1,59 @@
+// import React, { Component } from "react";
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+import Person from "./Person/Person";
+
+// class App extends Component {
+const App = () => {
+  const [personState, setPersonState] = useState({
+    person: [
+      { name: "Arthur Blick", age: 28 },
+      { name: "Manu", age: 29 },
+      { name: "Tabitha", age: 26 },
+    ],
+    otherState: "just other state",
+  });
+
+  const switchNameHandler = () => {
+    setPersonState({
+      person: [
+        { name: "Maximilian", age: 28 },
+        { name: "Manu", age: 29 },
+        { name: "Stephanie", age: 26 },
+      ],
+    });
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1 className="App-title">Welcome to React</h1>
+      </header>
+      <p className="App-intro">
+        To get started, edit <code>src/App.js</code> and save to reload.
+      </p>
+      <br />
+      <button onClick={switchNameHandler}>Please Click Me</button>
+      <Person
+        name={personState.person[0].name}
+        age={personState.person[0].age}
+      />
+      <Person
+        name={personState.person[1].name}
+        age={personState.person[1].age}
+        click={switchNameHandler}
+      >
+        My Hobbies: Racing
+      </Person>
+      <Person
+        name={personState.person[2].name}
+        age={personState.person[2].age}
+      />
+    </div>
+  );
+};
+
+export default App;
